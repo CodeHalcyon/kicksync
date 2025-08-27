@@ -1,0 +1,29 @@
+/* 3D Canvas specific styles */
+#threeJsCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    outline: none; /* Remove focus outline */
+    cursor: grab; /* Indicate draggable */
+}
+#threeJsCanvas:active {
+    cursor: grabbing; /* Indicate currently dragging */
+}
+
+/* FAQ Accordion Icon Rotation */
+.faq-item button[aria-expanded="true"] svg {
+    transform: rotate(180deg);
+}
+
+/* Scrolled Header State */
+#mainHeader.header-scrolled-state {
+    top: 15px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    border-radius: 9999px !important; /* rounded-full */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important; /* shadow-lg */
+    background-color: rgba(var(--color-bg-rgb), 0.9) !important; /* bg-bg-base/90 */
+    backdrop-filter: blur(8px) !important; /* backdrop-blur-sm */
+    max-width: 1440px !important; /* lg:max-w-[1440px] */
+    width: calc(100% - 30px) !important; /* w-[calc(100%-30px)] */
+}

@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kicksync - Sync Your Style. Define Your Stride.</title>
+    <meta name="description" content="Kicksync offers the latest and most exclusive sneakers for Gen Z. Find your rhythm, sync your style.">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👟</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': 'var(--color-primary-500)',
+                        'primary-hover': 'var(--color-primary-600)',
+                        'accent': 'var(--color-accent-500)',
+                        'secondary-accent': 'var(--color-secondary-accent-500)',
+                        'text-base': 'var(--color-text)',
+                        'bg-base': 'var(--color-bg)',
+                        'surface': 'var(--color-surface)',
+                        'vibrant-cyan': 'var(--color-vibrant-cyan)',
+                        'vibrant-magenta': 'var(--color-vibrant-magenta)',
+                        'vibrant-lime': 'var(--color-vibrant-lime)',
+                    },
+                    fontFamily: {
+                        headline: ['"Bebas Neue"', 'sans-serif'],
+                        sans: ['Outfit', 'sans-serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+                        'fade-in': 'fade-in 1s ease-out forwards',
+                    },
+                    keyframes: {
+                        'fade-in-up': {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        'fade-in': {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --color-primary-500: #2F3E46; /* Deep Slate Blue */
+            --color-primary-600: #222E35; /* Darker Slate Blue for hover */
+            --color-accent-500: #D4AF37; /* Refined Gold */
+            --color-secondary-accent-500: #4A6D7C; /* Muted Teal */
+            
+            --color-text-rgb: 26, 26, 26; /* Very Dark Grey/Near Black for light mode */
+            --color-bg-rgb: 248, 248, 248;
+            --color-surface-rgb: 255, 255, 255;
+
+            --color-text: rgb(var(--color-text-rgb));
+            --color-bg: rgb(var(--color-bg-rgb));
+            --color-surface: rgb(var(--color-surface-rgb));
+
+            /* Vibrant Colors for Abstract Patterns */
+            --color-vibrant-cyan: #00E0FF;
+            --color-vibrant-magenta: #FF00E0;
+            --color-vibrant-lime: #AFFF00;
+        }
+        html[data-theme="dark"] {
+            --color-text-rgb: 234, 234, 234;
+            --color-bg-rgb: 26, 26, 26;
+            --color-surface-rgb: 40, 40, 40;
+
+            --color-text: rgb(var(--color-text-rgb));
+            --color-bg: rgb(var(--color-bg-rgb));
+            --color-surface: rgb(var(--color-surface-rgb));
+        }
+        body {
+            color: var(--color-text);
+            background-color: var(--color-bg);
+            transition: background-color 0.5s ease, color 0.5s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        /* Removed product-card:hover styles, now handled by GSAP */
+        .dark-mode-toggle {
+            transition: transform 0.3s ease;
+        }
+        .dark-mode-toggle.active .sun-icon {
+            opacity: 0;
+            transform: rotate(90deg);
+        }
+        .dark-mode-toggle.active .moon-icon {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+        .sun-icon, .moon-icon {
+            position: absolute;
+            inset: 0; /* top:0, right:0, bottom:0, left:0 */
+            margin: auto; /* Centers the absolutely positioned element */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .sun-icon {
+            opacity: 1;
+            transform: rotate(0deg);
+        }
+        .moon-icon {
+            opacity: 0;
+            transform: rotate(-90deg);
+        }
+        .nav-link:hover {
+            color: var(--color-accent-500);
+            transform: translateY(-2px);
+        }
+        .nav-link {
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-primary {
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px) scale(1.02);
+            background-color: var(--color-primary-600);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .btn-secondary-accent {
+            background-color: var(--color-secondary-accent-500);
+            color: var(--color-bg);
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        }
+        .btn-secondary-accent:hover {
+            transform: translateY(-3px) scale(1.02);
+            background-color: #304D5A; /* Darker Muted Teal */
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        .hero-headline {
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.4);
+        }
+        .logo-text {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Glitch Effect for Preloader Text */
+        .glitch-text {
+            position: relative;
+            color: var(--color-primary-500); /* Use primary color for text */
+            font-family: 'Bebas Neue', sans-serif;
+            font-weight: 700;
+            text-shadow: 0.05em 0 0 var(--color-accent-500),
+                         -0.03em -0.02em 0 var(--color-secondary-accent-500),
+                         0.02em 0.04em 0 var(--color-primary-600);
+            animation: glitch 1.5s infinite alternate-reverse;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-bg); /* Match preloader background */
+            overflow: hidden;
+        }
+
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -0.05em 0 0 var(--color-accent-500);
+            animation: glitch-top 1.5s infinite alternate-reverse;
+        }
+
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -0.05em 0 0 var(--color-secondary-accent-500);
+            animation: glitch-bottom 1.5s infinite alternate-reverse;
+        }
+
+        @keyframes glitch {
+            0% {
+                text-shadow: 0.05em 0 0 var(--color-accent-500),
+                             -0.03em -0.02em 0 var(--color-secondary-accent-500),
+                             0.02em 0.04em 0 var(--color-primary-600);
+            }
+            25% {
+                text-shadow: -0.05em 0 0 var(--color-secondary-accent-500),
+                             0.03em 0.02em 0 var(--color-primary-600),
+                             -0.02em -0.04em 0 var(--color-accent-500);
+            }
+            50% {
+                text-shadow: 0.03em 0 0 var(--color-primary-600),
+                             -0.05em -0.02em 0 var(--color-accent-500),
+                             0.02em 0.04em 0 var(--color-secondary-accent-500);
+            }
+            75% {
+                text-shadow: -0.02em 0 0 var(--color-accent-500),
+                             0.05em 0.02em 0 var(--color-secondary-accent-500),
+                             -0.03em -0.04em 0 var(--color-primary-600);
+            }
+            100% {
+                text-shadow: 0.05em 0 0 var(--color-secondary-accent-500),
+                             -0.03em -0.02em 0 var(--color-primary-600),
+                             0.02em 0.04em 0 var(--color-accent-500);
+            }
+        }
+
+        @keyframes glitch-top {
+            0% {
+                clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+                transform: translate(-2px, -2px);
+            }
+            20% {
+                clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+                transform: translate(2px, 2px);
+            }
+            40% {
+                clip-path: polygon(0 33%, 100% 33%, 100% 66%, 0 66%);
+                transform: translate(-2px, -2px);
+            }
+            60% {
+                clip-path: polygon(0 33%, 100% 33%, 100% 66%, 0 66%);
+                transform: translate(2px, 2px);
+            }
+            80% {
+                clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+                transform: translate(-2px, -2px);
+            }
+            100% {
+                clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+                transform: translate(2px, 2px);
+            }
+        }
+
+        @keyframes glitch-bottom {
+            0% {
+                clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+                transform: translate(2px, 2px);
+            }
+            20% {
+                clip-path: polygon(0 66%, 100% 66%, 100% 100%, 0 100%);
+                transform: translate(-2px, -2px);
+            }
+            40% {
+                clip-path: polygon(0 33%, 100% 33%, 100% 66%, 0 66%);
+                transform: translate(2px, 2px);
+            }
+            60% {
+                clip-path: polygon(0 33%, 100% 33%, 100% 66%, 0 66%);
+                transform: translate(-2px, -2px);
+            }
+            80% {
+                clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+                transform: translate(2px, 2px);
+            }
+            100% {
+                clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
+                transform: translate(-2px, -2px);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-sans antialiased leading-relaxed text-text-base bg-bg-base overflow-x-hidden">
+
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 bg-bg-base z-[9999] flex flex-col items-center justify-center overflow-hidden" aria-hidden="true">
+        <div class="relative text-center">
+            <h2 id="glitchText" class="glitch-text text-6xl md:text-8xl font-headline text-primary mb-8" data-text="LOADING...">LOADING...</h2>
+            <div class="w-64 md:w-96 h-2 bg-surface rounded-full overflow-hidden">
+                <div id="progressBar" class="h-full bg-accent w-0"></div>
+            </div>
+            <span id="progressPercentage" class="text-xl md:text-2xl font-semibold mt-4 block text-text-base">0%</span>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 py-4 px-6 md:px-12 bg-bg-base shadow-none rounded-none w-full transition-all duration-300 ease-in-out">
+        <nav class="flex justify-between items-center max-w-[90vw] lg:max-w-[1440px] mx-auto">
+            <a href="#" class="text-3xl font-headline tracking-widest text-primary logo-text" aria-label="Kicksync Home">
+                KICKSYNC
+            </a>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#new-arrivals" class="nav-link text-lg font-medium">New Drops</a>
+                <div class="relative group">
+                    <button id="collectionsDropdownToggle" class="nav-link text-lg font-medium flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-accent rounded-md" aria-haspopup="true" aria-expanded="false">
+                        Collections
+                        <svg class="w-4 h-4 transition-transform duration-200 group-[.dropdown-open]:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <div id="collectionsDropdownMenu" class="absolute hidden top-full left-1/2 -translate-x-1/2 mt-2 w-48 bg-surface rounded-lg shadow-xl py-2 z-50 opacity-0 pointer-events-none transition-all duration-300 ease-in-out transform scale-95 origin-top">
+                        <a href="#aura-flow" class="block px-4 py-2 text-text-base hover:bg-bg-base hover:text-accent transition-colors duration-200">AuraFlow</a>
+                        <a href="#urban-rhythm" class="block px-4 py-2 text-text-base hover:bg-bg-base hover:text-accent transition-colors duration-200">UrbanRhythm</a>
+                        <a href="#neo-classic" class="block px-4 py-2 text-text-base hover:bg-bg-base hover:text-accent transition-colors duration-200">NeoClassic</a>
+                        <a href="#apex-stride" class="block px-4 py-2 text-text-base hover:bg-bg-base hover:text-accent transition-colors duration-200">ApexStride</a>
+                        <a href="#lumin-edge" class="block px-4 py-2 text-text-base hover:bg-bg-base hover:text-accent transition-colors duration-200">LuminEdge</a>
+                    </div>
+                </div>
+                <a href="#design-lab" class="nav-link text-lg font-medium">Design Lab</a>
+                <a href="#story" class="nav-link text-lg font-medium">Our Vibe</a>
+                <a href="#community" class="nav-link text-lg font-medium">Squad</a>
+                <a href="#faq" class="nav-link text-lg font-medium">FAQ</a>
+                <a href="#contact" class="nav-link text-lg font-medium">Contact</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="darkModeToggle" aria-label="Toggle dark mode" class="relative w-8 h-8 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-accent rounded-full dark-mode-toggle">
+                    <svg class="sun-icon w-6 h-6 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h1M3 12H2m15.325-4.275l.707-.707M3.968 19.032l.707-.707m0-11.314l-.707-.707m11.314 0l.707-.707"></path></svg>
+                    <svg class="moon-icon w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                <button aria-label="Open shopping cart" class="relative p-2 rounded-full hover:bg-surface focus:outline-none focus:ring-2 focus:ring-accent">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <span class="absolute -top-1 -right-1 bg-secondary-accent text-white text-xs font-bold rounded-full h-4 w-4 flex items-center justify-center">3</span>
+                </button>
+                <button id="mobileMenuToggle" aria-label="Open mobile menu" class="md:hidden p-2 rounded-full hover:bg-surface focus:outline-none focus:ring-2 focus:ring-accent">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu" class="fixed inset-0 bg-bg-base/95 backdrop-blur-md z-40 flex flex-col items-center justify-center space-y-8 transform translate-x-full transition-transform duration-300 ease-in-out md:hidden">
+            <button id="closeMobileMenu" aria-label="Close mobile menu" class="absolute top-6 right-6 p-2 rounded-full hover:bg-surface focus:outline-none focus:ring-2 focus:ring-accent">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <a href="#new-arrivals" class="text-5xl font-headline text-text-base hover:text-accent transition-colors duration-200">New Drops</a>
+            <a href="#aura-flow" class="text-5xl font-headline text-text-base hover:text-accent transition-colors duration-200">AuraFlow</a>
+            <a href="#urban-rhythm" class="text-5xl font-headline text-text-base hover:text-accent transition-colors duration-200">UrbanRhythm</a>
+            <a href="#neo-classic" class="text-5xl font-headline text-text-base hover:text-accent transition-colors duration-200">NeoClassic</a>
+            <a href="#apex-stride" class="text-5xl font-headline text-text-base hover:text-accent transition-colors duration-200">ApexStride</a>
+            <a href="#lumin-edge" class="text-5xl font-headline text-text-base hover:text-accent transition-colors duration-200">LuminEdge</a>
+            <a href="#design-lab" class="text-5xl font-headline text-text-base hover:text-accent transition-colors duration-200">Design Lab</a>
+            <a href="#story" class="text-5xl font-headline text-text-base hover:text-accent transition-colors duration-200">Our Vibe</a>
+            <a href="#community" class="text-5xl font-headline text-text-base hover:text-accent transition-colors duration-200">Squad</a>
+            <a href="#faq" class="text-5xl font-headline text-text-base hover:text-accent transition-colors duration-200">FAQ</a>
+            <a href="#contact" class="text-5xl font-headline text-text-base hover:text-accent transition-colors duration-200">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section - Updated for Storytelling & Editorial Layout -->
+        <section class="relative min-h-[calc(100vh-80px)] flex items-center justify-center overflow-hidden bg-bg-base">
+            <!-- Background Image - Full bleed, slightly toned for text readability -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2000&q=80" 
+                     alt="Dynamic shot of a person in motion, wearing stylish Kicksync sneakers, urban background" 
+                     class="w-full h-full object-cover object-center hero-bg-image" loading="eager">
+                <div class="absolute inset-0 bg-gradient-to-t from-bg-base/90 via-bg-base/60 to-transparent md:bg-gradient-to-r md:from-bg-base/90 md:via-bg-base/70 md:to-transparent hero-overlay"></div>
+            </div>
+
+            <div class="relative z-10 max-w-[90vw] lg:max-w-[1440px] mx-auto px-6 md:px-12 py-20 md:py-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 items-center min-h-[calc(100vh-80px)]">
+                <!-- Main Content Block -->
+                <div class="md:col-span-1 lg:col-span-2 text-center md:text-left p-6 md:p-8 lg:p-10 bg-surface/90 dark:bg-surface/95 rounded-xl shadow-2xl backdrop-blur-sm hero-content-block">
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-headline text-primary leading-tight mb-4 hero-headline drop-shadow-lg">
+                        <span class="block hero-headline-line">SYNC YOUR STYLE.</span>
+                        <span class="block hero-headline-line">DEFINE YOUR STRIDE.</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-text-base mb-8 hero-subheadline max-w-2xl mx-auto md:mx-0">
+                        Beyond the tread, it's your narrative. Kicksync curates the pulse of urban culture, empowering every step with authentic expression.
+                    </p>
+                    <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 hero-cta-group">
+                        <a href="#new-arrivals" class="btn-primary bg-primary text-white py-3 px-8 rounded-full text-xl font-semibold inline-block shadow-lg hover:shadow-xl">
+                            Explore The Drop
+                        </a>
+                        <a href="#story" class="btn-secondary-accent bg-secondary-accent text-bg-base py-3 px-8 rounded-full text-xl font-semibold inline-block shadow-lg hover:shadow-xl">
+                            Our Vibe
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Secondary Visual / Story Element -->
+                <div class="hidden md:block lg:col-span-1 hero-secondary-image-container">
+                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d52?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                         alt="Close-up of a vibrant sneaker detail, showing texture and color" 
+                         class="w-full h-96 object-cover object-center rounded-xl shadow-2xl transform rotate-3 scale-105 hero-secondary-image" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- New Arrivals Section -->
+        <section id="new-arrivals" class="py-16 md:py-24 px-6 md:px-12">
+            <div class="max-w-[90vw] lg:max-w-[1440px] mx-auto">
+                <h2 class="text-5xl md:text-6xl font-headline text-center mb-12 md:mb-16 scroll-reveal">NEW DROPS. FRESH VIBES.</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
+                    <article class="product-card bg-surface p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal relative transform rotate-1">
+                        <a href="#" aria-label="View VibeRunner 3000 details" class="block w-full">
+                            <img src="https://placehold.co/700x400/2F3E46/FFFFFF?text=VibeRunner+3000" 
+                                 alt="VibeRunner 3000, sleek white and grey sneaker" 
+                                 class="product-image w-full h-64 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-2xl font-bold mb-2">VibeRunner 3000</h3>
+                            <p class="text-lg text-gray-500 dark:text-gray-400 mb-4">Unleash your urban spirit.</p>
+                            <span class="text-2xl font-semibold text-primary">$189.99</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                Experience the ultimate blend of comfort and street style. The VibeRunner 3000 features a responsive sole and breathable mesh upper, perfect for all-day wear.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+
+                    <article class="product-card bg-surface p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal relative transform -rotate-1">
+                        <a href="#" aria-label="View UrbanStride X details" class="block w-full">
+                            <img src="https://placehold.co/700x400/D4AF37/2F3E46?text=UrbanStride+X" 
+                                 alt="UrbanStride X, vibrant blue and orange sneaker" 
+                                 class="product-image w-full h-64 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-2xl font-bold mb-2">UrbanStride X</h3>
+                            <p class="text-lg text-gray-500 dark:text-gray-400 mb-4">Command the streets with confidence.</p>
+                            <span class="text-2xl font-semibold text-primary">$165.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                Engineered for the city's pulse, UrbanStride X offers superior grip and a bold, expressive design. Conquer every block with unmatched style and comfort.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+
+                    <article class="product-card bg-surface p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal lg:col-span-3 relative transform rotate-2">
+                        <a href="#" aria-label="View PulseKicks Pro details" class="block w-full">
+                            <img src="https://placehold.co/700x400/4A6D7C/FFFFFF?text=PulseKicks+Pro" 
+                                 alt="PulseKicks Pro, edgy black and white high-top sneaker" 
+                                 class="product-image w-full h-64 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-2xl font-bold mb-2">PulseKicks Pro</h3>
+                            <p class="text-lg text-gray-500 dark:text-gray-400 mb-4">Feel the beat, own the moment.</p>
+                            <span class="text-2xl font-semibold text-primary">$210.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                The PulseKicks Pro is designed for dynamic movement and maximum impact. Its high-top silhouette and advanced cushioning provide superior support and an unmistakable presence.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+                </div>
+                <div class="text-center mt-16 scroll-reveal">
+                    <a href="#shop" class="btn-primary bg-primary text-white py-3 px-8 rounded-full text-xl font-semibold inline-block shadow-lg hover:shadow-xl">
+                        View All Sneakers
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- AuraFlow Collection Section (Long Story) -->
+        <section id="aura-flow" class="relative py-16 md:py-24 px-6 md:px-12 bg-bg-base overflow-hidden">
+            <!-- Abstract Pattern Element 1 (AuraFlow) -->
+            <div class="absolute inset-0 pointer-events-none z-0 abstract-pattern-element 
+                        bg-gradient-to-br from-vibrant-cyan/30 via-transparent to-primary/20 
+                        dark:from-vibrant-cyan/20 dark:to-primary/10 
+                        transform scale-150 rotate-12 -translate-x-1/4">
+            </div>
+
+            <div class="max-w-[90vw] lg:max-w-[1440px] mx-auto relative z-10">
+                <h2 class="text-5xl md:text-6xl font-headline text-center mb-12 md:mb-16 scroll-reveal">
+                    AURAFLOW: YOUR PATH, UNWRITTEN.
+                </h2>
+
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center mb-16">
+                    <div class="scroll-reveal lg:col-span-3 lg:order-2">
+                        <img src="https://placehold.co/1200x450/00E0FF/2F3E46?text=AuraFlow+Collection" 
+                             alt="Kicksync AuraFlow sneaker in a dynamic, artistic setting, highlighting its sleek design" 
+                             class="w-full h-[450px] object-cover rounded-xl shadow-2xl transform -rotate-2 scale-100 hover:scale-102 hover:rotate-0 transition-transform duration-500 ease-in-out" loading="lazy">
+                    </div>
+                    <div class="scroll-reveal lg:col-span-2 lg:order-1 text-center lg:text-left p-6 bg-surface/80 dark:bg-surface/90 rounded-xl shadow-xl backdrop-blur-sm">
+                        <h3 class="text-4xl md:text-5xl font-headline text-primary mb-6 leading-tight">
+                            The Silent Revolution of Every Step.
+                        </h3>
+                        <p class="text-lg md:text-xl mb-6 text-text-base">
+                            In a world buzzing with constant notifications and curated feeds, finding your authentic rhythm is a quiet rebellion. AuraFlow isn't just a sneaker; it's your personal anchor, a testament to the journey of self-discovery that defines Gen Z. It’s for those who navigate the urban labyrinth with intention, seeking clarity in the chaos.
+                        </p>
+                        <p class="text-lg md:text-xl mb-6 text-text-base">
+                            Crafted with our revolutionary <strong class="text-accent">Adaptive Weave™</strong>, AuraFlow molds to your unique foot shape, offering unparalleled comfort and support as you pivot through life's unexpected turns. The <strong class="text-accent">Resonance Sole™</strong>, engineered from recycled materials, provides a responsive bounce, propelling you forward while honoring our planet. Every stitch, every contour, is a whisper of resilience, a nod to your evolving narrative.
+                        </p>
+                        <p class="text-lg md:text-xl mb-8 text-text-base">
+                            Whether you're coding late, creating art, or simply finding solace in a city park, AuraFlow moves with you, a silent partner in your pursuit of purpose. It’s the feeling of grounding yourself amidst the digital noise, the confidence to step into your truth, one mindful stride at a time.
+                        </p>
+                        <a href="#shop" class="btn-primary bg-primary text-white py-3 px-8 rounded-full text-xl font-semibold inline-block shadow-lg hover:shadow-xl">
+                            Discover AuraFlow
+                        </a>
+                    </div>
+                </div>
+
+                <!-- AuraFlow Product Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mt-16">
+                    <article class="product-card bg-surface p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal lg:col-span-2 relative transform -rotate-1">
+                        <a href="#" aria-label="View AuraFlow 'Zenith' details" class="block w-full">
+                            <img src="https://placehold.co/1000x320/D4AF37/FFFFFF?text=AuraFlow+Zenith" 
+                                 alt="AuraFlow 'Zenith' - minimalist white sneaker" 
+                                 class="product-image w-full h-80 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-3xl font-bold mb-2">AuraFlow 'Zenith'</h3>
+                            <p class="text-xl text-gray-500 dark:text-gray-400 mb-4">Pure form, ultimate comfort.</p>
+                            <span class="text-3xl font-semibold text-primary">$210.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                The Zenith embodies minimalist perfection. Its pristine design and feather-light construction offer a cloud-like experience, elevating your everyday stride to new heights.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-3 px-8 rounded-full font-medium">Add to Cart</button>
+                    </article>
+
+                    <article class="product-card bg-surface p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal relative transform rotate-1">
+                        <a href="#" aria-label="View AuraFlow 'Echo' details" class="block w-full">
+                            <img src="https://placehold.co/700x256/4A6D7C/FFFFFF?text=AuraFlow+Echo" 
+                                 alt="AuraFlow 'Echo' - dark grey and teal sneaker" 
+                                 class="product-image w-full h-64 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-2xl font-bold mb-2">AuraFlow 'Echo'</h3>
+                            <p class="text-lg text-gray-500 dark:text-gray-400 mb-4">Resonance in every movement.</p>
+                            <span class="text-2xl font-semibold text-primary">$215.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                Echo responds to your every step, providing dynamic feedback and support. Its subtle color palette reflects the quiet strength found in mindful motion.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+
+                    <article class="product-card bg-surface p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal lg:col-span-full relative transform -rotate-2">
+                        <a href="#" aria-label="View AuraFlow 'Pulse' details" class="block w-full">
+                            <img src="https://placehold.co/700x256/2F3E46/D4AF37?text=AuraFlow+Pulse" 
+                                 alt="AuraFlow 'Pulse' - black and gold sneaker" 
+                                 class="product-image w-full h-64 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-2xl font-bold mb-2">AuraFlow 'Pulse'</h3>
+                            <p class="text-lg text-gray-500 dark:text-gray-400 mb-4">Vibrant energy, understated power.</p>
+                            <span class="text-2xl font-semibold text-primary">$225.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                Pulse captures the vibrant energy of self-expression. Its sleek design and subtle accents make a statement without uttering a word, perfect for those who lead with quiet confidence.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- UrbanRhythm Collection Section -->
+        <section id="urban-rhythm" class="relative py-16 md:py-24 px-6 md:px-12 bg-surface overflow-hidden">
+            <!-- Abstract Pattern Element 2 (UrbanRhythm) -->
+            <div class="absolute inset-0 pointer-events-none z-0 abstract-pattern-element 
+                        bg-gradient-to-tl from-vibrant-magenta/30 via-transparent to-secondary-accent/20 
+                        dark:from-vibrant-magenta/20 dark:to-secondary-accent/10 
+                        transform scale-150 -rotate-6 translate-x-1/4">
+            </div>
+            <div class="max-w-[90vw] lg:max-w-[1440px] mx-auto relative z-10">
+                <h2 class="text-5xl md:text-6xl font-headline text-center mb-12 md:mb-16 scroll-reveal">
+                    URBANRHYTHM: THE CITY'S PULSE.
+                </h2>
+                <div class="grid grid-cols-1 lg:grid-cols-4 gap-12 items-center mb-16">
+                    <div class="scroll-reveal lg:col-span-2">
+                        <img src="https://placehold.co/1200x450/FF00E0/FFFFFF?text=UrbanRhythm+Collection" 
+                             alt="Kicksync UrbanRhythm sneaker in a dynamic urban setting" 
+                             class="w-full h-[450px] object-cover rounded-xl shadow-2xl transform rotate-2 scale-100 hover:scale-102 hover:rotate-0 transition-transform duration-500 ease-in-out" loading="lazy">
+                    </div>
+                    <div class="scroll-reveal lg:col-span-2 text-center lg:text-left p-6 bg-bg-base/80 dark:bg-bg-base/90 rounded-xl shadow-xl backdrop-blur-sm">
+                        <h3 class="text-4xl md:text-5xl font-headline text-primary mb-6 leading-tight">
+                            Engineered for the Concrete Jungle.
+                        </h3>
+                        <p class="text-lg md:text-xl mb-8 text-text-base">
+                            UrbanRhythm captures the raw energy of city life. Designed for those who thrive in motion, these sneakers offer unparalleled durability and a bold aesthetic that stands out in any crowd. Experience the fusion of street style and cutting-edge performance.
+                        </p>
+                        <a href="#shop" class="btn-primary bg-primary text-white py-3 px-8 rounded-full text-xl font-semibold inline-block shadow-lg hover:shadow-xl">
+                            Explore UrbanRhythm
+                        </a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mt-16">
+                    <article class="product-card bg-bg-base p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal relative transform rotate-1">
+                        <a href="#" aria-label="View UrbanRhythm 'Metro' details" class="block w-full">
+                            <img src="https://placehold.co/700x256/2F3E46/FFFFFF?text=UrbanRhythm+Metro" 
+                                 alt="UrbanRhythm 'Metro' - sleek black and white sneaker" 
+                                 class="product-image w-full h-64 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-2xl font-bold mb-2">UrbanRhythm 'Metro'</h3>
+                            <span class="text-2xl font-semibold text-primary">$199.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                The Metro is your essential companion for navigating the urban sprawl. Its sleek profile and robust construction provide comfort and style for every city adventure.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+                    <article class="product-card bg-bg-base p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal lg:col-span-2 relative transform -rotate-1">
+                        <a href="#" aria-label="View UrbanRhythm 'Pulse' details" class="block w-full">
+                            <img src="https://placehold.co/1000x320/D4AF37/2F3E46?text=UrbanRhythm+Pulse" 
+                                 alt="UrbanRhythm 'Pulse' - vibrant red and black sneaker" 
+                                 class="product-image w-full h-80 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-3xl font-bold mb-2">UrbanRhythm 'Pulse'</h3>
+                            <p class="text-xl text-gray-500 dark:text-gray-400 mb-4">Feel the city's heartbeat.</p>
+                            <span class="text-3xl font-semibold text-primary">$205.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                Pulse is a declaration of urban energy. Its vibrant design and responsive cushioning keep you in sync with the city's rhythm, from dawn till dusk.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+                    <article class="product-card bg-bg-base p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal lg:col-span-3 relative transform rotate-2">
+                        <a href="#" aria-label="View UrbanRhythm 'Vibe' details" class="block w-full">
+                            <img src="https://placehold.co/700x256/AFFF00/2F3E46?text=UrbanRhythm+Vibe" 
+                                 alt="UrbanRhythm 'Vibe' - grey and neon green sneaker" 
+                                 class="product-image w-full h-64 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-2xl font-bold mb-2">UrbanRhythm 'Vibe'</h3>
+                            <span class="text-2xl font-semibold text-primary">$195.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                The Vibe brings an electrifying edge to your street style. Its unique color accents and comfortable fit ensure you stand out and stay comfortable, no matter where the city takes you.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- NeoClassic Collection Section -->
+        <section id="neo-classic" class="relative py-16 md:py-24 px-6 md:px-12 bg-bg-base overflow-hidden">
+            <!-- Abstract Pattern Element 3 (NeoClassic) -->
+            <div class="absolute inset-0 pointer-events-none z-0 abstract-pattern-element 
+                        bg-gradient-to-tr from-vibrant-lime/30 via-transparent to-accent/20 
+                        dark:from-vibrant-lime/20 dark:to-accent/10 
+                        transform scale-150 -rotate-12 -translate-y-1/4">
+            </div>
+            <div class="max-w-[90vw] lg:max-w-[1440px] mx-auto relative z-10">
+                <h2 class="text-5xl md:text-6xl font-headline text-center mb-12 md:mb-16 scroll-reveal">
+                    NEOCLASSIC: HERITAGE REIMAGINED.
+                </h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center mb-16">
+                    <div class="scroll-reveal lg:col-span-2 lg:order-1 text-center lg:text-left p-6 bg-surface/80 dark:bg-surface/90 rounded-xl shadow-xl backdrop-blur-sm">
+                        <h3 class="text-4xl md:text-5xl font-headline text-primary mb-6 leading-tight">
+                            Timeless Design, Future-Forward Comfort.
+                        </h3>
+                        <p class="text-lg md:text-xl mb-8 text-text-base">
+                            NeoClassic is where iconic silhouettes meet modern innovation. We've taken the best of traditional craftsmanship and infused it with contemporary materials and comfort technology, creating sneakers that are both nostalgic and undeniably fresh. For those who appreciate enduring style.
+                        </p>
+                        <a href="#shop" class="btn-primary bg-primary text-white py-3 px-8 rounded-full text-xl font-semibold inline-block shadow-lg hover:shadow-xl">
+                            Discover NeoClassic
+                        </a>
+                    </div>
+                    <div class="scroll-reveal lg:col-span-1 lg:order-2">
+                        <img src="https://placehold.co/1200x450/4A6D7C/FFFFFF?text=NeoClassic+Collection" 
+                             alt="Kicksync NeoClassic sneaker, showcasing a timeless yet modern design" 
+                             class="w-full h-[450px] object-cover rounded-xl shadow-2xl transform -rotate-3 scale-100 hover:scale-102 hover:rotate-0 transition-transform duration-500 ease-in-out" loading="lazy">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mt-16">
+                    <article class="product-card bg-surface p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal lg:col-span-2 relative transform -rotate-1">
+                        <a href="#" aria-label="View NeoClassic 'Legacy' details" class="block w-full">
+                            <img src="https://placehold.co/1000x320/D4AF37/2F3E46?text=NeoClassic+Legacy" 
+                                 alt="NeoClassic 'Legacy' - classic white leather sneaker" 
+                                 class="product-image w-full h-80 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-3xl font-bold mb-2">NeoClassic 'Legacy'</h3>
+                            <p class="text-xl text-gray-500 dark:text-gray-400 mb-4">Enduring style, redefined.</p>
+                            <span class="text-3xl font-semibold text-primary">$230.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                The Legacy reinterprets classic design with modern sensibilities. Crafted from premium materials, it offers a sophisticated look and feel that stands the test of time.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-3 px-8 rounded-full font-medium">Add to Cart</button>
+                    </article>
+                    <article class="product-card bg-surface p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal relative transform rotate-1">
+                        <a href="#" aria-label="View NeoClassic 'Revival' details" class="block w-full">
+                            <img src="https://placehold.co/700x256/2F3E46/FFFFFF?text=NeoClassic+Revival" 
+                                 alt="NeoClassic 'Revival' - grey suede and white sole sneaker" 
+                                 class="product-image w-full h-64 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-2xl font-bold mb-2">NeoClassic 'Revival'</h3>
+                            <span class="text-2xl font-semibold text-primary">$225.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                Revival blends vintage charm with contemporary comfort. Its soft suede and classic lines offer a versatile style that's perfect for any occasion.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+                    <article class="product-card bg-surface p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal lg:col-span-full relative transform -rotate-2">
+                        <a href="#" aria-label="View NeoClassic 'Icon' details" class="block w-full">
+                            <img src="https://placehold.co/700x256/4A6D7C/FFFFFF?text=NeoClassic+Icon" 
+                                 alt="NeoClassic 'Icon' - brown leather and white sole sneaker" 
+                                 class="product-image w-full h-64 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-2xl font-bold mb-2">NeoClassic 'Icon'</h3>
+                            <span class="text-2xl font-semibold text-primary">$240.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                The Icon is a tribute to enduring style, reimagined for today. Its rich leather and classic silhouette make it a versatile staple for any wardrobe.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ApexStride Collection Section -->
+        <section id="apex-stride" class="relative py-16 md:py-24 px-6 md:px-12 bg-surface overflow-hidden">
+            <!-- Abstract Pattern Element 4 (ApexStride) -->
+            <div class="absolute inset-0 pointer-events-none z-0 abstract-pattern-element 
+                        bg-gradient-to-bl from-vibrant-magenta/30 via-transparent to-primary/20 
+                        dark:from-vibrant-magenta/20 dark:to-primary/10 
+                        transform scale-150 rotate-6 translate-y-1/4">
+            </div>
+            <div class="max-w-[90vw] lg:max-w-[1440px] mx-auto relative z-10">
+                <h2 class="text-5xl md:text-6xl font-headline text-center mb-12 md:mb-16 scroll-reveal">
+                    APEXSTRIDE: PEAK PERFORMANCE. UNRIVALED STYLE.
+                </h2>
+                <div class="grid grid-cols-1 lg:grid-cols-6 gap-12 items-center mb-16">
+                    <div class="scroll-reveal lg:col-span-4">
+                        <img src="https://placehold.co/1600x450/FF00E0/FFFFFF?text=ApexStride+Collection" 
+                             alt="Kicksync ApexStride sneaker, emphasizing speed and agility" 
+                             class="w-full h-[450px] object-cover rounded-xl shadow-2xl transform rotate-2 scale-100 hover:scale-102 hover:rotate-0 transition-transform duration-500 ease-in-out" loading="lazy">
+                    </div>
+                    <div class="scroll-reveal lg:col-span-2 text-center lg:text-left p-6 bg-bg-base/80 dark:bg-bg-base/90 rounded-xl shadow-xl backdrop-blur-sm">
+                        <h3 class="text-4xl md:text-5xl font-headline text-primary mb-6 leading-tight">
+                            Dominate Every Terrain.
+                        </h3>
+                        <p class="text-lg md:text-xl mb-8 text-text-base">
+                            For the relentless, the driven, the ones who push boundaries. ApexStride is engineered for peak performance without compromising on style. Lightweight, responsive, and built to endure, these sneakers are your ultimate partner for every challenge, from the track to the street.
+                        </p>
+                        <a href="#shop" class="btn-primary bg-primary text-white py-3 px-8 rounded-full text-xl font-semibold inline-block shadow-lg hover:shadow-xl">
+                            Conquer with ApexStride
+                        </a>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mt-16">
+                    <article class="product-card bg-bg-base p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal relative transform rotate-1">
+                        <a href="#" aria-label="View ApexStride 'Velocity' details" class="block w-full">
+                            <img src="https://placehold.co/700x256/2F3E46/D4AF37?text=ApexStride+Velocity" 
+                                 alt="ApexStride 'Velocity' - dynamic blue and black running shoe" 
+                                 class="product-image w-full h-64 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-2xl font-bold mb-2">ApexStride 'Velocity'</h3>
+                            <span class="text-2xl font-semibold text-primary">$250.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                Velocity is built for speed and agility. Its aerodynamic design and ultra-responsive sole propel you forward, making every run feel effortless.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+                    <article class="product-card bg-bg-base p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal lg:col-span-2 relative transform -rotate-1">
+                        <a href="#" aria-label="View ApexStride 'Endurance' details" class="block w-full">
+                            <img src="https://placehold.co/1000x320/D4AF37/2F3E46?text=ApexStride+Endurance" 
+                                 alt="ApexStride 'Endurance' - robust grey and orange trail shoe" 
+                                 class="product-image w-full h-80 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-3xl font-bold mb-2">ApexStride 'Endurance'</h3>
+                            <p class="text-xl text-gray-500 dark:text-gray-400 mb-4">Built for the long haul.</p>
+                            <span class="text-3xl font-semibold text-primary">$245.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                Endurance is crafted for the toughest challenges. Its rugged construction and superior traction provide unwavering support on any terrain, ensuring you go the distance.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+                    <article class="product-card bg-bg-base p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal lg:col-span-3 relative transform rotate-2">
+                        <a href="#" aria-label="View ApexStride 'Momentum' details" class="block w-full">
+                            <img src="https://placehold.co/700x256/4A6D7C/FFFFFF?text=ApexStride+Momentum" 
+                                 alt="ApexStride 'Momentum' - sleek black and white performance sneaker" 
+                                 class="product-image w-full h-64 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-2xl font-bold mb-2">ApexStride 'Momentum'</h3>
+                            <span class="text-2xl font-semibold text-primary">$255.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                Momentum is engineered to keep you moving forward. Its lightweight design and responsive cushioning provide the perfect balance of speed and comfort for your active lifestyle.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- LuminEdge Collection Section -->
+        <section id="lumin-edge" class="relative py-16 md:py-24 px-6 md:px-12 bg-bg-base overflow-hidden">
+            <!-- Abstract Pattern Element 5 (LuminEdge) -->
+            <div class="absolute inset-0 pointer-events-none z-0 abstract-pattern-element 
+                        bg-gradient-to-br from-vibrant-cyan/30 via-transparent to-surface/20 
+                        dark:from-vibrant-cyan/20 dark:to-surface/10 
+                        transform scale-150 rotate-3 -translate-x-1/2">
+            </div>
+            <div class="max-w-[90vw] lg:max-w-[1440px] mx-auto relative z-10">
+                <h2 class="text-5xl md:text-6xl font-headline text-center mb-12 md:mb-16 scroll-reveal">
+                    LUMINEDGE: MINIMALIST. FUTURISTIC. REFINED.
+                </h2>
+                <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center mb-16">
+                    <div class="scroll-reveal lg:col-span-3 lg:order-1 text-center lg:text-left p-6 bg-surface/80 dark:bg-surface/90 rounded-xl shadow-xl backdrop-blur-sm">
+                        <h3 class="text-4xl md:text-5xl font-headline text-primary mb-6 leading-tight">
+                            The Future of Footwear, Today.
+                        </h3>
+                        <p class="text-lg md:text-xl mb-8 text-text-base">
+                            LuminEdge is a testament to the power of less. Stripped down to its essential elements, this collection embodies minimalist design with a futuristic edge. Each pair is a statement of understated luxury, crafted for those who define trends rather than follow them. Experience pure form and function.
+                        </p>
+                        <a href="#shop" class="btn-primary bg-primary text-white py-3 px-8 rounded-full text-xl font-semibold inline-block shadow-lg hover:shadow-xl">
+                            Explore LuminEdge
+                        </a>
+                    </div>
+                    <div class="scroll-reveal lg:col-span-2 lg:order-2">
+                        <img src="https://placehold.co/1200x450/00E0FF/2F3E46?text=LuminEdge+Collection" 
+                             alt="Kicksync LuminEdge sneaker, highlighting its clean lines and futuristic aesthetic" 
+                             class="w-full h-[450px] object-cover rounded-xl shadow-2xl transform -rotate-2 scale-100 hover:scale-102 hover:rotate-0 transition-transform duration-500 ease-in-out" loading="lazy">
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 mt-16">
+                    <article class="product-card bg-surface p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal relative transform -rotate-1">
+                        <a href="#" aria-label="View LuminEdge 'Apex' details" class="block w-full">
+                            <img src="https://placehold.co/700x256/D4AF37/2F3E46?text=LuminEdge+Apex" 
+                                 alt="LuminEdge 'Apex' - sleek white minimalist sneaker" 
+                                 class="product-image w-full h-64 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-2xl font-bold mb-2">LuminEdge 'Apex'</h3>
+                            <span class="text-2xl font-semibold text-primary">$260.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                Apex represents the pinnacle of minimalist design. Its clean lines and advanced materials create a futuristic aesthetic that is both striking and effortlessly elegant.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+                    <article class="product-card bg-surface p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal lg:col-span-2 relative transform rotate-1">
+                        <a href="#" aria-label="View LuminEdge 'Void' details" class="block w-full">
+                            <img src="https://placehold.co/1000x320/2F3E46/FFFFFF?text=LuminEdge+Void" 
+                                 alt="LuminEdge 'Void' - matte black minimalist sneaker" 
+                                 class="product-image w-full h-80 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-3xl font-bold mb-2">LuminEdge 'Void'</h3>
+                            <p class="text-xl text-gray-500 dark:text-gray-400 mb-4">The essence of understated power.</p>
+                            <span class="text-3xl font-semibold text-primary">$265.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                Void embodies the essence of understated power. Its matte black finish and sleek design offer a sophisticated edge, making a statement through its quiet confidence.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+                    <article class="product-card bg-surface p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal lg:col-span-3 relative transform -rotate-2">
+                        <a href="#" aria-label="View LuminEdge 'Halo' details" class="block w-full">
+                            <img src="https://placehold.co/700x256/00E0FF/2F3E46?text=LuminEdge+Halo" 
+                                 alt="LuminEdge 'Halo' - iridescent white minimalist sneaker" 
+                                 class="product-image w-full h-64 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-2xl font-bold mb-2">LuminEdge 'Halo'</h3>
+                            <p class="text-lg text-gray-500 dark:text-gray-400 mb-4">Vibrant energy, understated power.</p>
+                            <span class="text-2xl font-semibold text-primary">$270.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                Halo radiates a subtle, futuristic glow. Its iridescent finish and clean design create a captivating visual, perfect for those who appreciate refined innovation.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3D Design Lab Section -->
+        <section id="design-lab" class="py-16 md:py-24 px-6 md:px-12 bg-bg-base">
+            <div class="max-w-[90vw] lg:max-w-[1440px] mx-auto text-center">
+                <h2 class="text-5xl md:text-6xl font-headline mb-8 scroll-reveal">KICKSYNC DESIGN LAB.</h2>
+                <p class="text-xl md:text-2xl mb-12 text-text-base scroll-reveal">
+                    Explore the intricate details and innovative materials of our conceptual designs. Drag to rotate and discover.
+                </p>
+                <div class="relative w-full max-w-4xl mx-auto h-[500px] md:h-[600px] bg-surface rounded-xl shadow-2xl overflow-hidden scroll-reveal">
+                    <canvas id="threeJsCanvas" aria-label="Interactive 3D model of a Kicksync design prototype. Drag to rotate."></canvas>
+                    <div id="loading3D" class="absolute inset-0 flex items-center justify-center bg-surface/90 text-text-base text-lg font-semibold">
+                        Loading 3D Model...
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Brand Story / Manifesto Section -->
+        <section id="story" class="py-16 md:py-24 px-6 md:px-12 bg-surface">
+            <div class="max-w-[90vw] lg:max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="scroll-reveal">
+                    <img src="https://placehold.co/1000x384/4A6D7C/FFFFFF?text=Our+Vibe" 
+                         alt="Diverse group of young people laughing and walking together in an urban setting" 
+                         class="w-full h-96 object-cover rounded-xl shadow-xl" loading="lazy">
+                </div>
+                <div class="scroll-reveal">
+                    <h2 class="text-4xl md:text-5xl font-headline mb-6 leading-tight">
+                        MORE THAN JUST KICKS.<br>IT'S A MOVEMENT.
+                    </h2>
+                    <p class="text-lg mb-6 text-gray-600 dark:text-gray-300">
+                        At Kicksync, we believe in the power of self-expression. Our sneakers aren't just footwear; they're a canvas for your individuality, a statement of your rhythm in a world that's constantly moving. We champion authenticity, creativity, and the vibrant energy of Gen Z.
+                    </p>
+                    <p class="text-lg mb-8 text-gray-600 dark:text-gray-300">
+                        We're committed to sustainable practices, ethical sourcing, and building a community where every stride tells a story.
+                    </p>
+                    <a href="#" class="text-accent font-semibold text-lg hover:underline">Learn More About Our Values &rarr;</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Products Section (Asymmetrical Grid) -->
+        <section id="shop" class="py-16 md:py-24 px-6 md:px-12">
+            <div class="max-w-[90vw] lg:max-w-[1440px] mx-auto">
+                <h2 class="text-5xl md:text-6xl font-headline text-center mb-12 md:mb-16 scroll-reveal">CURATED FOR YOUR VIBE.</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 md:gap-12">
+                    <article class="product-card bg-surface p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal md:col-span-2 lg:col-span-2 relative transform rotate-1">
+                        <a href="#" aria-label="View EchoFlow Max details" class="block w-full">
+                            <img src="https://placehold.co/1000x320/2F3E46/FFFFFF?text=EchoFlow+Max" 
+                                 alt="EchoFlow Max, minimalist black sneaker with white sole" 
+                                 class="product-image w-full h-80 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-3xl font-bold mb-2">EchoFlow Max</h3>
+                            <p class="text-xl text-gray-500 dark:text-gray-400 mb-4">Seamless comfort, undeniable style.</p>
+                            <span class="text-3xl font-semibold text-primary">$220.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                EchoFlow Max offers a seamless blend of comfort and cutting-edge design. Its lightweight construction and responsive cushioning provide an unparalleled walking experience.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-3 px-8 rounded-full font-medium">Add to Cart</button>
+                    </article>
+
+                    <article class="product-card bg-surface p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal relative transform -rotate-1">
+                        <a href="#" aria-label="View NovaGlide details" class="block w-full">
+                            <img src="https://placehold.co/700x256/FF00E0/FFFFFF?text=NovaGlide" 
+                                 alt="NovaGlide, vibrant red and black running shoe" 
+                                 class="product-image w-full h-64 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-2xl font-bold mb-2">NovaGlide</h3>
+                            <p class="text-lg text-gray-500 dark:text-gray-400 mb-4">Lightweight, responsive, iconic.</p>
+                            <span class="text-2xl font-semibold text-primary">$175.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                NovaGlide is engineered for speed and style. Its lightweight construction and responsive sole provide an exhilarating ride, making every step feel dynamic.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+
+                    <article class="product-card bg-surface p-6 rounded-xl shadow-lg flex flex-col items-center text-center scroll-reveal lg:col-span-full relative transform rotate-2">
+                        <a href="#" aria-label="View ZenithFlow details" class="block w-full">
+                            <img src="https://placehold.co/700x256/AFFF00/2F3E46?text=ZenithFlow" 
+                                 alt="ZenithFlow, stylish grey and white sneaker" 
+                                 class="product-image w-full h-64 object-cover rounded-lg mb-6" loading="lazy">
+                            <h3 class="product-title text-2xl font-bold mb-2">ZenithFlow</h3>
+                            <p class="text-lg text-gray-500 dark:text-gray-400 mb-4">Peak performance, effortless cool.</p>
+                            <span class="text-2xl font-semibold text-primary">$195.00</span>
+                        </a>
+                        <div class="product-details-expanded text-left w-full mt-4 px-2">
+                            <p class="text-sm text-gray-600 dark:text-gray-300 mb-4">
+                                ZenithFlow combines peak performance with effortless cool. Its sleek design and advanced cushioning provide comfort and style for any urban adventure.
+                            </p>
+                            <a href="#" class="text-accent font-semibold text-sm hover:underline block mb-4">Quick View &rarr;</a>
+                        </div>
+                        <button class="mt-auto btn-primary bg-primary text-white py-2 px-6 rounded-full font-medium">Add to Cart</button>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community / Social Proof Section -->
+        <section id="community" class="py-16 md:py-24 px-6 md:px-12 bg-primary text-white">
+            <div class="max-w-[90vw] lg:max-w-[1440px] mx-auto text-center">
+                <h2 class="text-5xl md:text-6xl font-headline mb-8 scroll-reveal">JOIN THE KICKSYNC SQUAD.</h2>
+                <p class="text-xl md:text-2xl mb-12 scroll-reveal">
+                    Be part of a community that celebrates individuality and fresh style. Share your Kicksync moments!
+                </p>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+                    <img src="https://placehold.co/400x192/D4AF37/2F3E46?text=Kicksync+Community" alt="Person showing off Kicksync sneakers" class="w-full h-48 object-cover rounded-lg shadow-md scroll-reveal" loading="lazy">
+                    <img src="https://placehold.co/400x192/4A6D7C/FFFFFF?text=Kicksync+Style" alt="Close up of Kicksync sneakers on a skateboard" class="w-full h-48 object-cover rounded-lg shadow-md scroll-reveal" loading="lazy">
+                    <img src="https://placehold.co/400x192/00E0FF/2F3E46?text=Kicksync+Vibe" alt="Kicksync sneakers in a vibrant street art setting" class="w-full h-48 object-cover rounded-lg shadow-md scroll-reveal" loading="lazy">
+                    <img src="https://placehold.co/400x192/FF00E0/FFFFFF?text=Kicksync+Squad" alt="Kicksync sneakers on a person walking" class="w-full h-48 object-cover rounded-lg shadow-md scroll-reveal" loading="lazy">
+                </div>
+                <a href="#" class="btn-secondary-accent text-bg-base py-3 px-8 rounded-full text-xl font-semibold inline-block shadow-lg hover:shadow-xl">
+                    #KicksyncYourStyle
+                </a>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-16 md:py-24 px-6 md:px-12 bg-bg-base">
+            <div class="max-w-[90vw] lg:max-w-[1000px] mx-auto">
+                <h2 class="text-5xl md:text-6xl font-headline text-center mb-12 md:mb-16 scroll-reveal">YOUR QUESTIONS. OUR ANSWERS.</h2>
+                <div class="space-y-6">
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item bg-surface p-6 rounded-xl shadow-lg scroll-reveal">
+                        <button class="flex justify-between items-center w-full text-left font-bold text-xl md:text-2xl text-primary focus:outline-none focus:ring-2 focus:ring-accent" aria-expanded="false" aria-controls="faq-answer-1" id="faq-question-1">
+                            <span>What makes Kicksync sneakers unique?</span>
+                            <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="faq-answer-1" role="region" aria-labelledby="faq-question-1" class="overflow-hidden mt-4">
+                            <p class="text-lg text-text-base pt-2">Kicksync sneakers are crafted at the intersection of cutting-edge design and sustainable innovation. We use advanced materials like our Adaptive Weave™ for unparalleled comfort and Resonance Sole™ made from recycled components, ensuring every pair is both stylish and environmentally conscious. It's about defining your stride with purpose.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item bg-surface p-6 rounded-xl shadow-lg scroll-reveal">
+                        <button class="flex justify-between items-center w-full text-left font-bold text-xl md:text-2xl text-primary focus:outline-none focus:ring-2 focus:ring-accent" aria-expanded="false" aria-controls="faq-answer-2" id="faq-question-2">
+                            <span>How do I find the right size?</span>
+                            <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="faq-answer-2" role="region" aria-labelledby="faq-question-2" class="overflow-hidden mt-4">
+                            <p class="text-lg text-text-base pt-2">We recommend checking our detailed size guide available on each product page. Our sizing is generally true to fit, but for specific collections like AuraFlow, which features an adaptive fit, you might find a slightly more forgiving feel. If you're still unsure, our customer support team is ready to assist!</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item bg-surface p-6 rounded-xl shadow-lg scroll-reveal">
+                        <button class="flex justify-between items-center w-full text-left font-bold text-xl md:text-2xl text-primary focus:outline-none focus:ring-2 focus:ring-accent" aria-expanded="false" aria-controls="faq-answer-3" id="faq-question-3">
+                            <span>What is your return policy?</span>
+                            <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="faq-answer-3" role="region" aria-labelledby="faq-question-3" class="overflow-hidden mt-4">
+                            <p class="text-lg text-text-base pt-2">We offer a 30-day hassle-free return policy for unworn items in their original packaging. Your satisfaction is our priority. Please visit our 'Shipping & Returns' page for complete details and instructions on how to initiate a return or exchange.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item bg-surface p-6 rounded-xl shadow-lg scroll-reveal">
+                        <button class="flex justify-between items-center w-full text-left font-bold text-xl md:text-2xl text-primary focus:outline-none focus:ring-2 focus:ring-accent" aria-expanded="false" aria-controls="faq-answer-4" id="faq-question-4">
+                            <span>Do you ship internationally?</span>
+                            <svg class="w-6 h-6 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </button>
+                        <div id="faq-answer-4" role="region" aria-labelledby="faq-question-4" class="overflow-hidden mt-4">
+                            <p class="text-lg text-text-base pt-2">Yes, Kicksync is proud to offer international shipping to a wide range of countries. Shipping costs and delivery times vary by destination. You can find more information and estimated costs during checkout, or by visiting our 'Shipping & Returns' page.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Us Section -->
+        <section id="contact" class="py-16 md:py-24 px-6 md:px-12 bg-surface">
+            <div class="max-w-[90vw] lg:max-w-[1000px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="scroll-reveal text-center lg:text-left">
+                    <h2 class="text-5xl md:text-6xl font-headline mb-8 leading-tight">GET IN TOUCH.</h2>
+                    <p class="text-xl md:text-2xl mb-8 text-text-base">Have a question, a collaboration idea, or just want to share your Kicksync story? We'd love to hear from you.</p>
+                    
+                    <div class="space-y-4 text-lg mb-8">
+                        <p class="flex items-center justify-center lg:justify-start gap-3"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg><a href="mailto:hello@kicksync.com" class="hover:text-accent transition-colors">hello@kicksync.com</a></p>
+                        <p class="flex items-center justify-center lg:justify-start gap-3"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg><a href="tel:+1234567890" class="hover:text-accent transition-colors">+1 (234) 567-890</a></p>
+                        <p class="flex items-center justify-center lg:justify-start gap-3"><svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>123 Sync Street, Metropolis, CA 90210</p>
+                    </div>
+                </div>
+                
+                <div class="scroll-reveal bg-bg-base p-8 rounded-xl shadow-lg">
+                    <form action="#" method="POST" class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-lg font-medium text-text-base mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="w-full p-3 border border-surface rounded-md bg-surface focus:ring-accent focus:border-accent transition-all duration-200" placeholder="Your Name" required>
+                        </div>
+                        <div>
+                            <label for="email" class="block text-lg font-medium text-text-base mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full p-3 border border-surface rounded-md bg-surface focus:ring-accent focus:border-accent transition-all duration-200" placeholder="your@email.com" required>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-lg font-medium text-text-base mb-2">Message</label>
+                            <textarea id="message" name="message" rows="5" class="w-full p-3 border border-surface rounded-md bg-surface focus:ring-accent focus:border-accent transition-all duration-200" placeholder="Tell us what's on your mind..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary bg-primary text-white py-3 px-8 rounded-full text-xl font-semibold inline-block shadow-lg hover:shadow-xl">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-bg-base py-12 px-6 md:px-12 border-t border-surface">
+        <div class="max-w-[90vw] lg:max-w-[1440px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-left">
+            <div>
+                <h3 class="text-xl font-headline mb-4 text-primary">KICKSYNC</h3>
+                <p class="text-gray-600 dark:text-gray-400">Sync Your Style. Define Your Stride.</p>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Shop</h3>
+                <ul class="space-y-2">
+                    <li><a href="#new-arrivals" class="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors">New Drops</a></li>
+                    <li><a href="#aura-flow" class="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors">AuraFlow</a></li>
+                    <li><a href="#urban-rhythm" class="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors">UrbanRhythm</a></li>
+                    <li><a href="#neo-classic" class="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors">NeoClassic</a></li>
+                    <li><a href="#apex-stride" class="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors">ApexStride</a></li>
+                    <li><a href="#lumin-edge" class="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors">LuminEdge</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">About</h3>
+                <ul class="space-y-2">
+                    <li><a href="#story" class="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors">Our Vibe</a></li>
+                    <li><a href="#faq" class="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors">FAQ</a></li>
+                    <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors">Sustainability</a></li>
+                    <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-lg font-semibold mb-4">Support</h3>
+                <ul class="space-y-2">
+                    <li><a href="#contact" class="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors">Contact Us</a></li>
+                    <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors">Shipping & Returns</a></li>
+                    <li><a href="#" class="text-gray-600 dark:text-gray-400 hover:text-accent transition-colors">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mt-12 text-center text-gray-500 text-sm">
+            &copy; 2023 Kicksync. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" aria-label="Scroll to top" class="fixed bottom-8 right-8 bg-primary text-white p-4 rounded-full shadow-lg opacity-0 pointer-events-none transition-all duration-300 ease-in-out z-40 hover:bg-primary-hover focus:outline-none focus:ring-2 focus:ring-accent">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path></svg>
+    </button>
+
+    <!-- Watermark -->
+    <div class="fixed bottom-4 left-4 z-50 text-xs md:text-sm text-gray-400 dark:text-gray-600 opacity-70 hover:opacity-100 transition-opacity duration-300">
+        Made with <a href="https://github.com/CodeHalcyon/website-generator" target="_blank" rel="noopener noreferrer" class="underline hover:text-accent">Website Generator</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <!-- Three.js CDN - Ensure these load before script.js to make THREE global -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.158.0/three.min.js"></script>
+    <!-- GLTFLoader and OrbitControls CDNs - Load without 'async' to ensure global availability via THREE -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
